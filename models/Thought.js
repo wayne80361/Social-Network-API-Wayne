@@ -1,6 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const reactionSchema = new Schema({
+  reactionId: {
+    type: Schema.Types.ObjectId,
+    default: () => new Types.ObjectId(),
+  },
   reactionBody: {
     type: String,
     required: true,
@@ -23,7 +27,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
       minLength: 1,
-      minLength: 280,
+      maxLength: 280,
     },
     createdAt: {
       type: Date,
