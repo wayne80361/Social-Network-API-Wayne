@@ -1,5 +1,22 @@
 const { Schema, model } = require("mongoose");
 
+const reactionSchema = new Schema({
+  reactionBody: {
+    type: String,
+    required: true,
+    maxLength: 280,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now, // set default value to the current timestamp
+    get: (createdAt) => dateFormat(createdAt), // a getter method to formate the timestamp on query
+  },
+});
+
 const thoughtSchema = new Schema(
   {
     thoughtText: {
@@ -37,3 +54,7 @@ thoughtSchema.virtual("reactionCount").get(function () {
 function dateFormat(timestamp) {
   return new Date(timestamp).toLocaleString();
 }
+
+const Thought = model("Thought", thoughtSchema);
+
+module.exports = Thought;
