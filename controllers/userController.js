@@ -22,7 +22,7 @@ module.exports = {
         return res.status(404).json({ message: "User not found" });
       }
       res.json(user);
-    } catch {
+    } catch (err) {
       res.status(500).json(err);
     }
   },
@@ -32,7 +32,7 @@ module.exports = {
     try {
       const user = await User.create(req.body);
       res.json(user);
-    } catch {
+    } catch (err) {
       res.status(400).json(err);
     }
   },
@@ -49,7 +49,7 @@ module.exports = {
         return res.status(404).json({ message: "User not found" });
       }
       res.json(user);
-    } catch {
+    } catch (err) {
       res.status(400).json(err);
     }
   },
@@ -64,7 +64,7 @@ module.exports = {
       // remove associated thoughts when a user is deleted
       await Thought.deleteMany({ _id: { $in: user.thoughts } });
       res.json({ message: "User and associated thoughts removed" });
-    } catch {
+    } catch (err) {
       res.status(500).json(err);
     }
   },
