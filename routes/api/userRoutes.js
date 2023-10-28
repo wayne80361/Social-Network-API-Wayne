@@ -13,21 +13,14 @@ const {
 
 // /api/users
 // GET all user route & POST to create one new user route
-router.route("/users").get(getAllUsers).post(createUser);
+router.route("/").get(getAllUsers).post(createUser);
 
 // /api/users/:userId
 // GET one user route & Update one user & DELETE one user route
-router
-  .route("/users/:userId")
-  .get(getUserById)
-  .put(updateUser)
-  .delete(deleteUser);
+router.route("/:userId").get(getUserById).put(updateUser).delete(deleteUser);
 
 // /api/users/:userId/friends/:friendId
 // add a friend to a user's friend list & remove a friend from a user's friend list
-router
-  .route("/users/:userId/friends/:friendId")
-  .post(addFriend)
-  .delete(removeFriend);
+router.route("/:userId/friends/:friendId").post(addFriend).delete(removeFriend);
 
 module.exports = router;
