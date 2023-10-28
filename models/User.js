@@ -43,4 +43,11 @@ userSchema.virtual("friendCount").get(function () {
 
 const User = model("User", userSchema);
 
+// sample seeds
+User.create([
+  { username: "Wayne", email: "wayne@test.com", thoughts: [], friends: [] },
+  { username: "Akimo", email: "Akimo@test.com", thoughts: [], friends: [] },
+  { username: "Sharon", email: "sharon@test.com", thoughts: [], friends: [] },
+]);
+
 module.exports = User;
